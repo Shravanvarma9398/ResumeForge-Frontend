@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Dashboard() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -11,8 +13,58 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col md:flex-row">
 
+      {/* Mobile Navbar */}
+<div className="md:hidden bg-purple-800 text-white p-4 flex justify-between items-center">
+
+  <h1 className="text-xl font-bold">
+    ResumeForge
+  </h1>
+
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="text-2xl"
+  >
+    ☰
+  </button>
+
+</div>
+
+{menuOpen && (
+  <div className="md:hidden bg-purple-700 text-white p-4">
+
+    <Link
+      to="/dashboard"
+      className="block py-2"
+    >
+      Dashboard
+    </Link>
+
+    <Link
+      to="/upload"
+      className="block py-2"
+    >
+      Upload Resume
+    </Link>
+
+    <Link
+      to="/history"
+      className="block py-2"
+    >
+      Analysis History
+    </Link>
+
+    <button
+      onClick={logout}
+      className="mt-4 bg-white text-purple-700 px-4 py-2 rounded-lg"
+    >
+      Logout
+    </button>
+
+  </div>
+)}
+
       {/* Sidebar */}
-      <div className="w-full md:w-64 bg-gradient-to-b from-purple-900 to-violet-700 text-white p-6">
+      <div className="hidden md:block md:w-64 bg-gradient-to-b from-purple-900 to-violet-700 text-white p-6">
 
         <h1 className="text-3xl font-bold mb-6 md:mb-10">
           ResumeForge
