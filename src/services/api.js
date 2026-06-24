@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://resumeforge-backend-ep0g.onrender.com/api",
+  baseURL: "https://resumeforge-backend-6o0c.onrender.com/api",
 });
 
 export default API;
