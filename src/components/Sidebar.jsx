@@ -2,16 +2,15 @@ import {
   LayoutDashboard,
   Upload,
   History,
-  LogOut,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="w-72 min-h-screen bg-gradient-to-b from-purple-950 via-purple-900 to-violet-800 text-white p-6">
+    <div className="bg-gradient-to-b from-purple-950 via-purple-900 to-violet-800 text-white p-6 md:w-72 md:min-h-screen">
 
-      <h1 className="text-3xl font-bold mb-10">
+      <h1 className="hidden md:block text-3xl font-bold mb-10">
         ResumeForge
       </h1>
 
