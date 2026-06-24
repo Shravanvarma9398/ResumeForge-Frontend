@@ -4,9 +4,7 @@ import PageLayout from "../components/PageLayout";
 import ReactMarkdown from "react-markdown";
 
 function History() {
-
-  const [analyses, setAnalyses] =
-    useState([]);
+  const [analyses, setAnalyses] = useState([]);
 
   useEffect(() => {
     fetchHistory();
@@ -14,42 +12,30 @@ function History() {
 
   const fetchHistory = async () => {
     try {
+      const token = localStorage.getItem("token");
 
-      const token =
-        localStorage.getItem(
-          "token"
-        );
-
-      const res =
-        await API.get(
-          "/analysis/history",
-          {
-            headers: {
-              Authorization:
-                `Bearer ${token}`,
-            },
-          }
-        );
-
-      setAnalyses(
-        res.data.analyses
+      const res = await API.get(
+        "/analysis/history",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
+      setAnalyses(res.data.analyses);
     } catch (error) {
-
       console.log(error);
-
     }
   };
 
   return (
     <PageLayout>
+      <div className="max-w-6xl mx-auto px-3 md:px-0">
 
-      <div className="max-w-6xl mx-auto">
+        <div className="mb-8 md:mb-10">
 
-        <div className="mb-10">
-
-          <h1 className="text-4xl font-bold text-gray-800">
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
             Resume Analysis History
           </h1>
 
@@ -65,7 +51,7 @@ function History() {
             bg-white
             rounded-3xl
             shadow-lg
-            p-8
+            p-4 md:p-8
             text-center
           ">
             No analysis reports found.
@@ -78,18 +64,22 @@ function History() {
             <div
               key={item._id}
               className="
-              bg-white
-              rounded-3xl
-              shadow-lg
-              p-8
-              mb-8
+                bg-white
+                rounded-3xl
+                shadow-lg
+                p-4 md:p-8
+                mb-8
+                overflow-hidden
               "
             >
 
               <div className="
                 flex
-                justify-between
-                items-center
+                flex-col
+                md:flex-row
+                md:justify-between
+                md:items-center
+                gap-3
                 mb-5
                 border-b
                 pb-4
@@ -98,7 +88,7 @@ function History() {
                 <div>
 
                   <h2 className="
-                    text-xl
+                    text-lg md:text-xl
                     font-semibold
                     text-purple-700
                   ">
@@ -111,63 +101,70 @@ function History() {
 
                 </div>
 
-                <div className="
-                  text-sm
-                  text-gray-500
-                ">
-                  {new Date(
-                    item.createdAt
-                  ).toLocaleString()}
+                <div className="text-sm text-gray-500">
+                  {new Date(item.createdAt).toLocaleString(
+                    "en-IN",
+                    {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "2-digit",
+                    }
+                  )}
                 </div>
 
               </div>
 
-            <div className="
-  text-gray-700
-  leading-8
-">
-  <ReactMarkdown
-  components={{
-    h1: ({ children }) => (
-      <h1 className="text-3xl font-bold text-gray-900 mt-8 mb-4">
-        {children}
-      </h1>
-    ),
+              <div className="
+                text-gray-700
+                leading-8
+                break-words
+                overflow-x-auto
+              ">
+                <ReactMarkdown
+                  components={{
+                    h1: ({ children }) => (
+                      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mt-8 mb-4 break-words">
+                        {children}
+                      </h1>
+                    ),
 
-    h2: ({ children }) => (
-      <h2 className="text-2xl font-semibold text-purple-700 mt-6 mb-3">
-        {children}
-      </h2>
-    ),
+                    h2: ({ children }) => (
+                      <h2 className="text-xl md:text-2xl font-semibold text-purple-700 mt-6 mb-3 break-words">
+                        {children}
+                      </h2>
+                    ),
 
-    p: ({ children }) => (
-      <p className="text-gray-700 leading-8 mb-4">
-        {children}
-      </p>
-    ),
+                    p: ({ children }) => (
+                      <p className="text-gray-700 leading-8 mb-4 break-words">
+                        {children}
+                      </p>
+                    ),
 
-    ul: ({ children }) => (
-      <ul className="list-disc pl-6 mb-5">
-        {children}
-      </ul>
-    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc pl-6 mb-5">
+                        {children}
+                      </ul>
+                    ),
 
-    li: ({ children }) => (
-      <li className="text-gray-700 mb-2">
-        {children}
-      </li>
-    ),
+                    li: ({ children }) => (
+                      <li className="text-gray-700 mb-2 break-words">
+                        {children}
+                      </li>
+                    ),
 
-    strong: ({ children }) => (
-      <strong className="font-semibold text-gray-900">
-        {children}
-      </strong>
-    ),
-  }}
->
-  {item.analysis}
-</ReactMarkdown>
-</div>
+                    strong: ({ children }) => (
+                      <strong className="font-semibold text-gray-900">
+                        {children}
+                      </strong>
+                    ),
+                  }}
+                >
+                  {item.analysis}
+                </ReactMarkdown>
+              </div>
+
             </div>
 
           ))
@@ -175,7 +172,6 @@ function History() {
         )}
 
       </div>
-
     </PageLayout>
   );
 }

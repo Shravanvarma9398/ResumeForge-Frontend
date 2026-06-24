@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
 function PageLayout({ children }) {
@@ -8,7 +9,7 @@ function PageLayout({ children }) {
     <div className="min-h-screen bg-slate-100">
 
       {/* Mobile Navbar */}
-      <div className="md:hidden bg-purple-800 text-white p-4 flex justify-between items-center">
+      <div className="md:hidden bg-purple-800 text-white px-4 py-4 flex justify-between items-center shadow-md sticky top-0 z-50">
 
         <h1 className="text-xl font-bold">
           ResumeForge
@@ -23,33 +24,38 @@ function PageLayout({ children }) {
 
       </div>
 
- {menuOpen && (
-  <div className="md:hidden bg-purple-800 text-white">
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-purple-800 text-white shadow-lg">
 
-    <Link
-      to="/dashboard"
-      className="block p-4 border-b border-white/10"
-    >
-      Dashboard
-    </Link>
+          <Link
+            to="/dashboard"
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 border-b border-white/10"
+          >
+            Dashboard
+          </Link>
 
-    <Link
-      to="/upload"
-      className="block p-4 border-b border-white/10"
-    >
-      Upload Resume
-    </Link>
+          <Link
+            to="/upload"
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 border-b border-white/10"
+          >
+            Upload Resume
+          </Link>
 
-    <Link
-      to="/history"
-      className="block p-4"
-    >
-      Analysis History
-    </Link>
+          <Link
+            to="/history"
+            onClick={() => setMenuOpen(false)}
+            className="block p-4"
+          >
+            Analysis History
+          </Link>
 
-  </div>
-)}
-      <div className="flex">
+        </div>
+      )}
+
+      <div className="flex min-w-0">
 
         {/* Desktop Sidebar */}
         <div className="hidden md:block">
@@ -57,9 +63,9 @@ function PageLayout({ children }) {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-4 md:p-10">
+        <main className="flex-1 min-w-0 p-3 md:p-8 overflow-x-hidden">
           {children}
-        </div>
+        </main>
 
       </div>
 

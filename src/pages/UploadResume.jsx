@@ -49,10 +49,10 @@ function UploadResume() {
 
   return (
     <PageLayout>
-      <div className="max-w-5xl mx-auto">
+     <div className="max-w-5xl mx-auto px-2 md:px-0">
 
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">
+      <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
             Upload Resume
           </h1>
 
@@ -61,7 +61,7 @@ function UploadResume() {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-lg p-8">
+   <div className="bg-white rounded-3xl shadow-lg p-4 md:p-8">
 
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Upload Resume

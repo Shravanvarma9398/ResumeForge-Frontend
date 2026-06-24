@@ -18,7 +18,7 @@ function Sidebar() {
 
         <Link
           to="/dashboard"
-          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10"
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition"
         >
           <LayoutDashboard size={20} />
           Dashboard
@@ -26,7 +26,7 @@ function Sidebar() {
 
         <Link
           to="/upload"
-          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10"
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition"
         >
           <Upload size={20} />
           Upload Resume
@@ -34,7 +34,7 @@ function Sidebar() {
 
         <Link
           to="/history"
-          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10"
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition"
         >
           <History size={20} />
           Analysis History
