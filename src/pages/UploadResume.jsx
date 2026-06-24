@@ -71,14 +71,42 @@ function UploadResume() {
             Supported Format: PDF
           </p>
 
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={(e) =>
-              setFile(e.target.files[0])
-            }
-            className="border rounded-lg p-2"
-          />
+         <div className="w-full">
+
+  <label
+    htmlFor="resume"
+    className="
+      cursor-pointer
+      inline-block
+      bg-purple-700
+      text-white
+      px-5
+      py-3
+      rounded-xl
+      hover:bg-purple-800
+      transition
+    "
+  >
+    Choose Resume
+  </label>
+
+  <input
+    id="resume"
+    type="file"
+    accept=".pdf"
+    onChange={(e) =>
+      setFile(e.target.files[0])
+    }
+    className="hidden"
+  />
+
+  {file && (
+    <p className="mt-3 text-sm text-gray-600 break-all">
+      📄 {file.name}
+    </p>
+  )}
+
+</div>
 
           {file && (
             <p className="text-sm text-gray-600 mt-4">
